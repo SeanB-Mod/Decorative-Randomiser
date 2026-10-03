@@ -15,16 +15,9 @@ Decorative Randomiser adds native-style placement controls to the Items menu, ma
 - Rotation, colour, and brightness can be enabled independently.
 - Snapped items use half their normal rotation interval for additional variety.
 - Free-placement items can use any rotation angle.
-- A shuffled twelve-section hue system prevents long runs of similar blue or green colours.
-- Colour saturation varies from 30–100%.
-- Full-range brightness varies from 40–100%.
-- Changing to another colourable item works immediately without opening its colour picker.
-- Existing items are not changed when moved.
 - Native-style buttons, selected states, icons, spacing, and ON/OFF tooltips.
 - Randomisation controls reset to off when the Items menu is closed.
 - Drag Demolition and Demolish Museum controls are available from the Items menu.
-- Placement-panel visual cleanup removes stray translucent toolbar backgrounds.
-- Runtime work is cached and throttled to avoid frame-rate drops.
 
 ## Colour Focused
 
@@ -51,8 +44,6 @@ Brightness Focused selects a brightness within 15 percentage points either side 
    `6=TPM-DecorativeRandomiser.dll`
 
 4. Start the game and open the Items menu.
-
-If upgrading from an earlier build, delete `TPM-RandomPlacement.dll` or `DecorativeRandomiser.dll`, copy in `TPM-DecorativeRandomiser.dll`, and update its filename in `loader.ini`. Do not keep multiple copies.
 
 ## Removal
 
