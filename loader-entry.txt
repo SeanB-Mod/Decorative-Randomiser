@@ -1,0 +1,5 @@
+Add this as the next numbered line under [Mods] in Mods\loader.ini:
+
+6=DecorativeRandomiser.dll
+
+If 6 is already used, replace it with the next available number.

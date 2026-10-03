@@ -1,0 +1,9 @@
+build/
+package/
+package-*/
+release-*/
+github-*/
+*.dll
+*.exe
+*.zip
+*-installed-backup.dll

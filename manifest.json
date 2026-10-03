@@ -1,0 +1,17 @@
+{
+  "name": "Decorative Randomiser",
+  "version": "1.0",
+  "dll": "DecorativeRandomiser.dll",
+  "game": "Two Point Museum",
+  "testedBuildMetadata": "12.0.243206+2026-09-29.2232",
+  "loader": "TPM Multi-Mod Loader",
+  "features": [
+    "Random rotation for newly placed decorative items",
+    "Random full-spectrum colour for tintable items",
+    "Random brightness for tintable items",
+    "Native-style Items menu controls and tooltips",
+    "Drag Demolition from the Items menu",
+    "Demolish Museum from the Items menu"
+  ],
+  "liveGameTested": true
+}
