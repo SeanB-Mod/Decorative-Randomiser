@@ -22,6 +22,7 @@ Decorative Randomiser adds native-style placement controls to the Items menu, ma
 - Runtime work is cached and throttled to avoid frame-rate drops.
 
 ## Installation
+Install the Two Point Museum Mod Loader separately.
 
 1. Close Two Point Museum.
 2. Copy `DecorativeRandomiser.dll` into the game's `Mods` folder.
