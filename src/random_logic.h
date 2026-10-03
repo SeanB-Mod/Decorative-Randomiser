@@ -38,6 +38,43 @@ public:
     }
 };
 
+inline Hsv focused_colour(Rng& rng, float centreHue, float centreSaturation, float radius=0.30f) {
+    if (!std::isfinite(centreHue)) centreHue = 0.0f;
+    if (!std::isfinite(centreSaturation)) centreSaturation = 0.0f;
+    if (!(radius > 0.0f) || !std::isfinite(radius)) radius = 0.30f;
+    centreHue -= std::floor(centreHue);
+    centreSaturation = std::clamp(centreSaturation,0.0f,1.0f);
+    radius = std::min(radius,1.0f);
+    constexpr float tau = 6.2831853071795864769f;
+    const float centreAngle = centreHue*tau;
+    const float centreX = centreSaturation*std::cos(centreAngle);
+    const float centreY = centreSaturation*std::sin(centreAngle);
+    // Rejection sampling keeps the result uniformly distributed inside the
+    // requested circle while clipping only the portion outside the wheel.
+    for(int attempt=0;attempt<64;attempt++){
+        const float sampleRadius=std::sqrt(rng.unit())*radius;
+        const float sampleAngle=rng.unit()*tau;
+        const float x=centreX+sampleRadius*std::cos(sampleAngle);
+        const float y=centreY+sampleRadius*std::sin(sampleAngle);
+        const float saturation=std::sqrt(x*x+y*y);
+        if(saturation<=1.0f){
+            float hue=std::atan2(y,x)/tau;
+            if(hue<0.0f)hue+=1.0f;
+            return {hue,saturation,1.0f};
+        }
+    }
+    return {centreHue,centreSaturation,1.0f};
+}
+
+inline float focused_brightness(Rng& rng, float centreBrightness, float radius=0.15f) {
+    if (!std::isfinite(centreBrightness)) centreBrightness = 1.0f;
+    if (!(radius >= 0.0f) || !std::isfinite(radius)) radius = 0.15f;
+    centreBrightness = std::clamp(centreBrightness,0.0f,1.0f);
+    const float low = std::max(0.0f,centreBrightness-radius);
+    const float high = std::min(1.0f,centreBrightness+radius);
+    return low+rng.unit()*(high-low);
+}
+
 inline float snapped_rotation(Rng& rng, bool freePlacement, float snapDegrees) {
     if (freePlacement) return rng.unit() * 360.0f;
     if (!(snapDegrees > 0.01f) || !std::isfinite(snapDegrees)) snapDegrees = 90.0f;
@@ -70,10 +107,10 @@ inline Rgba hsv_to_rgb(Hsv h, float alpha) {
     }
 }
 
-inline Rgba randomise_colour(Rng& rng, Rgba input, bool colour, bool brightness, float selectedHue=-1.0f) {
+inline Rgba randomise_colour(Rng& rng, Rgba input, bool colour, bool brightness, float selectedHue=-1.0f, float selectedBrightness=-1.0f, float selectedSaturation=-1.0f) {
     Hsv hsv=rgb_to_hsv(input);
-    if(colour){hsv.h=selectedHue>=0.0f?selectedHue:rng.unit();hsv.s=0.30f+rng.unit()*0.70f;}
-    if(brightness)hsv.v=0.30f+rng.unit()*0.70f;
+    if(colour){hsv.h=selectedHue>=0.0f?selectedHue:rng.unit();hsv.s=selectedSaturation>=0.0f?std::clamp(selectedSaturation,0.0f,1.0f):0.30f+rng.unit()*0.70f;}
+    if(brightness)hsv.v=selectedBrightness>=0.0f?focused_brightness(rng,selectedBrightness):0.40f+rng.unit()*0.60f;
     return hsv_to_rgb(hsv,input.a);
 }
 

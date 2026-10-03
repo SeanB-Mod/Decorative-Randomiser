@@ -1,17 +1,18 @@
 {
   "name": "Decorative Randomiser",
-  "version": "1.0",
-  "dll": "DecorativeRandomiser.dll",
+  "version": "1.1",
+  "dll": "TPM-DecorativeRandomiser.dll",
   "game": "Two Point Museum",
   "testedBuildMetadata": "12.0.243206+2026-09-29.2232",
   "loader": "TPM Multi-Mod Loader",
   "features": [
     "Random rotation for newly placed decorative items",
-    "Random full-spectrum colour for tintable items",
-    "Random brightness for tintable items",
+    "Three-state colour control: off, full wheel, or Colour Focused inside a circular area around the picker position",
+    "Three-state brightness control: off, 40-100%, or Brightness Focused within 15 percentage points of the picker value",
+    "Live focused colour and brightness updates from picker changes",
     "Native-style Items menu controls and tooltips",
     "Drag Demolition from the Items menu",
     "Demolish Museum from the Items menu"
   ],
-  "liveGameTested": true
+  "liveGameTested": false
 }

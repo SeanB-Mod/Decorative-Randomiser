@@ -18,6 +18,6 @@ New-Item -ItemType Directory -Force $build | Out-Null
 if ($LASTEXITCODE -ne 0) { throw 'Unit test compilation failed' }
 & (Join-Path $build 'test_random_logic.exe')
 if ($LASTEXITCODE -ne 0) { throw 'Unit tests failed' }
-& $clang -std=c++17 -O2 -Wall -Wextra -Werror -shared -static '-Wl,--no-insert-timestamp' (Join-Path $PSScriptRoot 'RandomPlacement.cpp') -o (Join-Path $build 'DecorativeRandomiser.dll') -luser32
+& $clang -std=c++17 -O2 -Wall -Wextra -Werror -shared -static '-Wl,--no-insert-timestamp' (Join-Path $PSScriptRoot 'RandomPlacement.cpp') -o (Join-Path $build 'TPM-DecorativeRandomiser.dll') -luser32
 if ($LASTEXITCODE -ne 0) { throw 'DLL compilation failed' }
-Write-Host "Built $build\DecorativeRandomiser.dll"
+Write-Host "Built $build\TPM-DecorativeRandomiser.dll"
