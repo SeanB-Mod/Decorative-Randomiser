@@ -32,8 +32,6 @@ Install the Two Point Museum Mod Loader separately.
 
 4. Start the game and open the Items menu.
 
-If upgrading from an earlier build, delete `TPM-RandomPlacement.dll`, copy in `DecorativeRandomiser.dll`, and update its filename in `loader.ini`. Do not keep both DLLs.
-
 ## Removal
 
 Close the game, remove the DLL's entry from `loader.ini`, and delete `DecorativeRandomiser.dll`. The optional `Mods\Saves\RandomPlacement.ini` settings file can also be deleted.
